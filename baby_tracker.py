@@ -1,14 +1,13 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib
 import matplotlib.pyplot as plt
 from datetime import datetime
 
 #writing simple text
 
 st.text("Hello")
-growth = pd.read_csv("Kosmo Emery Crouch_growth.csv")
+growth = pd.read_csv("csv/Kosmo Emery Crouch_growth.csv")
 growth["kg"] = growth["Weight"].apply(lambda x: float(x[:-3]))
 growth["Time"] = growth["Time"].apply(lambda x: datetime.strptime(x[:-7], '%Y/%m/%d'))
 growth.drop(growth[growth["kg"] == 0].index, inplace = True)
