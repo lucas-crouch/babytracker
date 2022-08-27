@@ -6,7 +6,7 @@ from datetime import datetime
 
 #writing simple text
 
-st.text("Hello")
+st.text("This is the growth and development data for Kosmo Emery Crouch")
 growth = pd.read_csv("csv/Kosmo Emery Crouch_growth.csv")
 growth["kg"] = growth["Weight"].apply(lambda x: float(x[:-3]))
 growth["Time"] = growth["Time"].apply(lambda x: datetime.strptime(x[:-7], '%Y/%m/%d'))
