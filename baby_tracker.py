@@ -9,6 +9,8 @@ import math
 growth = pd.read_csv("csv/Kosmo Emery Crouch_growth.csv")
 formula = pd.read_csv("csv/Kosmo Emery Crouch_formula.csv")
 pumped = pd.read_csv("csv/Kosmo Emery Crouch_pumped.csv")
+diaper = pd.read_csv("csv/Kosmo Emery Crouch_diaper.csv")
+
 
 #calculate age stuff
 datetime.strptime(growth.iloc[-1]["Time"], '%Y/%m/%d, %H:%M')
@@ -18,9 +20,14 @@ hours = age.seconds / 60 // 60
 minutes = math.floor((age.seconds / 60 / 60 - hours) * 60)
 seconds = math.floor((((age.seconds / 60 / 60 - hours) * 60) - minutes) * 60)
 
+#calculate diapers used
+diaper_number = diaper["Baby"].count()
+
 #description
-st.text("This is the growth and development data for Kosmo Emery Crouch")
+st.title("Growth & Development for Kosmo Emery Crouch")
+
 st.text(f"Kosmo is {days} days, {int(hours)} hours, {minutes} minutes, {seconds} seconds old")
+st.text(f"Diapers used: {diaper_number}")
 
 growth["kg"] = growth["Weight"].apply(lambda x: float(x[:-3]))
 growth["Time"] = growth["Time"].apply(lambda x: datetime.strptime(x[:-7], '%Y/%m/%d'))
